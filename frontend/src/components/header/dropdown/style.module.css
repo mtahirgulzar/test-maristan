@@ -1,0 +1,13 @@
+.cusHover:hover {
+    background: #F9FAFB;
+    cursor: pointer;
+  }
+  .cusHover:hover .hoverText {
+    color: black !important;
+  }
+  
+  
+  
+  
+  
+  

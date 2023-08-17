@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Convergence&family=Inter:wght@700&family=Open+Sans:wght@600&family=Overpass:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap');
+
+.ff-inter{
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+.ff-open-sans{
+    font-family: 'Open Sans', sans-serif;
+}
+.ff-overpass{
+    font-family: 'Overpass', sans-serif;
+}
+* {
+    -webkit-font-smoothing: antialiased;
+  }
+  @font-face {
+    font-family: Convergence;
+    src: url(/fonts/Convergence-Regular.ttf);
+  }
+  .ff-convergence{
+    font-family: Convergence;
+  }
+.shadow{
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.06);
+}
+ .color:hover{
+    fill: red
+ }
+ .box{
+  box-shadow: 0px 5px 30px rgba(128, 42, 34, 0.38);
+ }
+ .dropdown-shadow{
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 0px 0px 1px rgba(0, 0, 0, 0.05);
+ }
+ .resources-card-shadow{
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.06);
+ }
+ .faq-card-shadow{
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.03);
+ }
+ .services-pagination {
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 400;
+  color: #F0117E;
+  margin-top: 40px;
+  margin-bottom: 45px;
+}
+
+.services-pagination .paginate-previous-link {
+  margin-right: 5px;
+}
+.services-pagination .paginate-link {
+  margin: 0px 5px;
+}
+
+.services-pagination .paginate-next-link {
+  margin-left: 5px;
+}
+.paginate-active-link {
+  font-weight: 800;
+}
+.selected{
+  color: #F0117E;
+  font-weight: 400;
+}
+.list-style{
+  list-style: disc;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: .3;
+  
+}
+
+.modal-wrapper {
+  position: fixed;
+  inset: 0;
+  margin: auto auto;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+}
+.modal-wrapper-inner{
+  position: fixed;
+  top: 60px;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+}
+
+.modal {
+  z-index: 100;
+margin: auto auto;
+  border-radius: 3px;
+  max-width: 700px;
+  height: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+  
+}
+.cus-background{
+  background: linear-gradient(90deg, #F7F3F0 0%, #EFE8E2 100%), #FFFFFF;
+}
+
+.dropdown{
+  opacity:0;
+  visibillity:hidden;
+  -webkit-transition: all 0.6s ease-in-out 0.15s;
+  -moz-transition: all 0.6s ease-in-out 0.15s;
+  -o-transition: all 0.6s ease-in-out 0.15s;
+  -ms-transition: all 0.6s ease-in-out 0.15s;
+  transition: all 0.6s ease-in-out 0.15s;
+}.dropdown:hover{
+    opacity:1;
+    visibilty:visiable;
+}
+/* .slick-slider {
+  position: relative !important;
+}
+.slick-dots{
+  position: absolute !important;
+  left: -520px !important;
+  bottom: 120px !important;
+  font-size: 20px !important ;
+}
+/* .slick-dots li{
+  font-size: 140px;
+} */
+.slick-slider {
+  position: relative !important;
+}
+
+.slick-dots {
+  position: absolute !important;
+  left: auto !important; /* Remove the specific left positioning */
+  right: 20px; /* Adjust the right positioning */
+  bottom: 120px !important;
+  font-size: 20px !important;
+  z-index: 100; /* Ensure dots are displayed on top */
+}
+
+/* Media query for larger viewports */
+@media (min-width: 1024px) {
+  .slick-dots {
+    right: 515px; /* Adjust the right positioning for larger screens */
+    bottom: 100px !important; /* Adjust the bottom positioning for larger screens */
+  }
+}
+
+/* Media query for medium-sized viewports */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .slick-dots {
+    right: 315px; /* Adjust the right positioning for medium-sized screens */
+    bottom: 80px !important; /* Adjust the bottom positioning for medium-sized screens */
+  }
+}
+
+/* Media query for smaller viewports */
+@media (max-width: 767px) and (min-width: 641px) {
+  .slick-dots {
+    right: 255px; /* Adjust the right positioning for smaller screens */
+    bottom: 60px !important; /* Adjust the bottom positioning for smaller screens */
+    font-size: 18px !important; /* Adjust font size for smaller screens */
+  }
+}
+
+/* Media query for even smaller viewports */
+@media (max-width: 640px) {
+  .slick-dots {
+    right: 10px; /* Adjust the right positioning for even smaller screens */
+    bottom: 40px !important; /* Adjust the bottom positioning for even smaller screens */
+    font-size: 16px !important; /* Adjust font size for even smaller screens */
+  }
+}
+
+.slick-dots li button:before {
+  margin-top: 0 !important; /* Reset the margin-top */
+  font-size: 10px !important;
+  position: fixed;
+}
+
+

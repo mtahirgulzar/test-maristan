@@ -1,0 +1,173 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - frontend
+
+resources:
+- repo: self
+
+pool: 
+  vmImage: 'ubuntu-22.04'
+
+variables:
+  rgName: 'rg-maristan'
+  project: 'maristan'
+  repoName: 'maristan-frontend'
+  workingDirectory: frontend
+  role: frontend
+  # Container registry service connection established during pipeline creation
+  azureRmServiceConnection: '9213edef-1c01-43d9-b8dc-6cc51591c922'
+  dockerRegistryServiceConnection: 'dd9cd273-7080-4119-9b04-217a421eb36e'
+  containerRegistry: 'vigorant.azurecr.io'
+  dockerfilePath: '$(workingDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
+  node_version: '16.19.0'
+
+stages:
+- stage: Staging
+  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/pull/'))
+  displayName: Staging
+
+  jobs:
+  - job: Build
+    displayName: 'Build and push container image'
+      
+    steps:
+
+    - checkout: self
+      submodules: recursive
+
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '$(node_version)'
+      displayName: 'Install Node.js'
+
+    - script: |
+        yarn install --immutable
+      displayName: yarn install --immutable
+      workingDirectory: $(workingDirectory)
+    - script: |
+        npm run build
+      displayName: npm run build
+      workingDirectory: $(workingDirectory)
+      # env:
+      #   APP_KEYS: $(APP_KEYS)
+
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(repoName)-staging'
+        command: 'build'
+        Dockerfile: '$(dockerfilePath)'
+        tags: |
+          latest
+          $(tag)
+        arguments: '--build-arg NODE_VERSION=$(node_version)'
+
+    - task: Docker@2
+      displayName: Push an image to container registry
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(repoName)-staging'
+        command: 'push'
+        tags: |
+          latest
+          $(tag)
+
+  - deployment: DeployPullRequest
+    displayName: 'Deploy'
+    environment: '$(role) Staging'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureRmWebAppDeployment@4
+            inputs:
+              ConnectionType: 'AzureRM'
+              azureSubscription: '$(azureRmServiceConnection)'
+              appType: 'webAppContainer'
+              WebAppName: '$(project)-$(role)'
+              deployToSlotOrASE: true
+              ResourceGroupName: '$(rgName)'
+              SlotName: 'staging'
+              DockerNamespace: '$(containerRegistry)'
+              DockerRepository: '$(repoName)-staging'
+              DockerImageTag: '$(tag)'
+              AppSettings: '-SITE_URL $(SITE_URL) -STRAPIBASEURL $(STRAPIBASEURL)'
+
+- stage: Production
+  condition: not(startsWith(variables['Build.SourceBranch'], 'refs/pull/'))
+  displayName: Production
+
+  jobs:
+  - job: Build
+    displayName: 'Build and push container image'
+      
+    steps:
+
+    - checkout: self
+      submodules: recursive
+
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '$(node_version)'
+      displayName: 'Install Node.js'
+
+    - script: |
+        yarn install --immutable
+      displayName: yarn install --immutable
+      workingDirectory: $(workingDirectory)
+    - script: |
+        npm run build
+      displayName: npm run build
+      workingDirectory: $(workingDirectory)
+      # env:
+      #   APP_KEYS: $(APP_KEYS)
+
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(repoName)'
+        command: 'build'
+        Dockerfile: '$(dockerfilePath)'
+        tags: |
+          latest
+          $(tag)
+        arguments: '--build-arg NODE_VERSION=$(node_version)'
+
+    - task: Docker@2
+      displayName: Push an image to container registry
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(repoName)'
+        command: 'push'
+        tags: |
+          latest
+          $(tag)
+
+  - deployment: Deploy
+    environment: '$(role) Production'
+    displayName: Deploy
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureRmWebAppDeployment@4
+            inputs:
+              ConnectionType: 'AzureRM'
+              azureSubscription: '$(azureRmServiceConnection)'
+              appType: 'webAppContainer'
+              WebAppName: '$(project)-$(role)'
+              DockerNamespace: '$(containerRegistry)'
+              DockerRepository: '$(repoName)'
+              DockerImageTag: '$(tag)'
+              AppSettings: '-SITE_URL $(SITE_URL) -STRAPIBASEURL $(STRAPIBASEURL)'
