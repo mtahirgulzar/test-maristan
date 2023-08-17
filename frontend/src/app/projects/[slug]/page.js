@@ -17,7 +17,7 @@ const Projects = async () => {
     const res = await fetch(`${adminPath}/projects?populate=deep`);
     return res.json();
   } catch (error) {
-    console.log("err>>>>>>", error);
+    console.log("err>>>>>>>>", error);
   }
 };
 
