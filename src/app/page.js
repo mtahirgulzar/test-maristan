@@ -12,7 +12,6 @@ import { adminPath, jwtToken } from "@/utils/constants";
 import EnrichKnowledge from "@/components/enrich-knowledge";
 import MeetAtMaristan from "@/components/meet-at-maristan";
 import ClinicFAQ from "@/components/clinic-FAQ";
-import Example from "@/components/example";
 const getData = async () => {
   const res = await fetch(`${adminPath}/home?populate=deep`);
   return res.json();
