@@ -40,7 +40,6 @@ export default async function HomePage() {
         <MeetAtMaristan data={pageData?.home_page[8]} />
         <ClinicFAQ />
         <Newsletter data={pageData?.home_page[9]} />
-        <Example />
     </>
   );
 }
