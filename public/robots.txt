@@ -1,6 +1,6 @@
 # *
 User-agent: *
-Allow: /
+DisAllow: /
 
 # Host
 Host: http://localhost:3000/
