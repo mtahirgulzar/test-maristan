@@ -33,7 +33,7 @@ const GetInTouch = ({ about, data }) => {
                 <button className="w-full sm:w-auto py-[14px] px-[32px] font-[600]  border-[1px] border-[#FFFFFF] rounded-[8px] ">
                   <div className="text-[16px] leading-[20.26px] text-[#FFFFFF] uppercase ff-overpass text-center flex justify-center items-center gap-x-[8px]">
                     <span>
-                      <Dial stroke="#ffffff" />
+                      <Dial stroke="#000000" />
                     </span>
                     {data?.call?.name || data?.cta[1]?.name}
                   </div>

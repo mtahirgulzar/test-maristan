@@ -87,7 +87,7 @@ export const SurveyForm = ({data}) => {
                   <div className="grid sm:grid-cols-2 gap-x-[15px]">
                     <div>
                       <label
-                        className="text-[#2C2C2C] text-[14px] font-[500] leading-[24px] ff-overpass"
+                        className="text-[#2C2C2C] text-[14px] font-[600] leading-[24px] ff-overpass"
                         htmlFor="name"
                       >
                         First Name
@@ -108,7 +108,7 @@ export const SurveyForm = ({data}) => {
                     </div>
                     <div>
                       <label
-                         className="text-[#2C2C2C] text-[14px] font-[500] leading-[24px] ff-overpass"
+                         className="text-[#2C2C2C] text-[14px] font-[600] leading-[24px] ff-overpass"
                         htmlFor="name"
                       >
                         Last Name
@@ -130,7 +130,7 @@ export const SurveyForm = ({data}) => {
                   </div>
                   <div>
                     <label
-                      className="text-[#2C2C2C] text-[14px] font-[500] leading-[24px] ff-overpass"
+                      className="text-[#2C2C2C] text-[14px] font-[600] leading-[24px] ff-overpass"
                       htmlFor="name"
                     >
                       Your Email.
