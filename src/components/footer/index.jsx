@@ -68,7 +68,7 @@ const Footer = ({ data }) => {
                       <ul className="">
                         {item?.items?.map((item, idx) => (
                         
-                          <Link key={idx} href={`/404`}>
+                          <Link key={idx} href={`${item?.link}`}>
                             <li className="hover:text-[#111827] mb-[26px] ff-overpass duration-500 transition-all font-[400] text-[16px]  leading-[20.26px] text-[#4B4B4B] capitalize max-w-max cursor-pointer">
                               {item?.name}
                             </li>
