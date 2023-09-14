@@ -48,7 +48,7 @@ export const JoinOurTeam = ({ data }) => {
                 <div className="mt-[24px] border-[1px] border-[#901C01] rounded-[8px] transition-all duration-300 hover:bg-[#e8e8e8] inline-flex">
                   <Link href="/contact-us">
                     <button className="px-[30px] py-[16px] text-[#901C01] leading-[20px] font-[600] ff-overpass uppercase">
-                      {data?.ctaName || "Apply now"}
+              {data?.ctaName || "Apply now"}
                     </button>
                   </Link>
                 </div>
