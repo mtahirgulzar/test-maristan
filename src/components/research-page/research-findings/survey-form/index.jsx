@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import { imageResolver } from "@/utils/image-resolver";
 
-export const SurveyForm = ({data}) => {
+export const SurveyForm = ({ data }) => {
   const [dis, setDis] = useState({
     firstname: "",
     lastname: "",
@@ -53,9 +53,7 @@ export const SurveyForm = ({data}) => {
           setBtnDis(false);
           document.getElementById("mySubmit").disabled = true;
         })
-        .catch((e) => {
-
-        });
+        .catch((e) => {});
       reset();
     }
   };
@@ -66,20 +64,20 @@ export const SurveyForm = ({data}) => {
         <div className="grid md:grid-cols-2 gap-x-[75px] items-center">
           <div>
             <h4 className="text-[14px] text-[#901C01] leading-[16px] font-[400] uppercase ff-convergence">
-             {data?.tagline}
+              {data?.tagline}
             </h4>
             <h2 className="text-[32px] sm:text-[36px] lg:text-[40px] leading-[38px] sm:leading-[44px] lg:leading-[47px] font-[400] text-[#2C2C2C] ff-convergence">
               {data?.title}
             </h2>
             <p className="leading-[20px] text-[#3B3731] ff-overpass opacity-[0.8] pt-[24px]">
-            {data?.description}
+              {data?.description}
             </p>
             <div className="mt-[40px] lg:mt-[51px] bg-[#ffff] p-[30px] rounded-[12px]">
               <h2 className="text-[28px] leading-[36px] font-[400] text-[#2C2C2C] tracking-[0.2px] ff-convergence">
-              {data?.subheading}
+                {data?.subheading}
               </h2>
               <form
-                onSubmit={() => handleSubmit(onSubmit)}
+                onSubmit={handleSubmit(onSubmit)}
                 method="POST"
                 className="mt-[22px]"
               >
@@ -108,7 +106,7 @@ export const SurveyForm = ({data}) => {
                     </div>
                     <div>
                       <label
-                         className="text-[#2C2C2C] text-[14px] font-[600] leading-[24px] ff-overpass"
+                        className="text-[#2C2C2C] text-[14px] font-[600] leading-[24px] ff-overpass"
                         htmlFor="name"
                       >
                         Last Name
@@ -155,7 +153,7 @@ export const SurveyForm = ({data}) => {
                     className={`mt-[12px] bg-[#901C01] text-[16px] font-[600] leading-[20px] ff-overpass uppercase transition-all duration-300 text-[#ffff] hover:bg-[#6d1906] py-[18px] rounded-[8px] w-full
                   ${!btnDis && "cursor-not-allowed"}   `}
                   >
-                {data?.ctaname}
+                    {data?.ctaname}
                   </button>
                 </div>
               </form>
@@ -170,7 +168,7 @@ export const SurveyForm = ({data}) => {
           <div className="mt-[40px] md:mt-0">
             <Image
               src={imageResolver(data?.img)?.path}
-              loader={()=> imageResolver(data?.img)?.path}
+              loader={() => imageResolver(data?.img)?.path}
               width={663}
               height={572}
               alt={data?.img?.data?.attributes?.alternativeText}
