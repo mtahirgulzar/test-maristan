@@ -22,6 +22,7 @@ export const metadata = {
 export default async function About() {
   const data = await getData();
   const pageData = data?.data?.attributes;
+  console.log(pageData?.aware[1])
  
   return (
     <>
@@ -31,6 +32,7 @@ export default async function About() {
       <Empowering data={pageData?.BrighterTomorrow}/>
       <TeamsSlider data={pageData?.DedicatedTeam} />
       <GetInTouch about data={pageData?.aware[1]}/>
+      
       <TeamsSlider data={pageData?.ClinicalTeam}/>
       <Newsletter data={pageData?.aware[2]}/>
     </>

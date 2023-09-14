@@ -13,10 +13,10 @@ import { Facebook } from "@/common/icons/facebook.svg";
 import { Twitter } from "@/common/icons/twitter.svg";
 import { Youtube } from "@/common/icons/youtube.svg";
 const socialLinks = [
-  { icon: <Instagram fill="#901C01" />, Link: "/" },
-  { icon: <Facebook fill="#901C01" />, Link: "/" },
-  { icon: <Twitter fill="#901C01" />, Link: "/" },
-  { icon: <Youtube fill="#901C01" />, Link: "/" },
+  { icon: <Instagram fill="#901C01" />, Link: "https://www.instagram.com/maristan_org/" },
+  { icon: <Facebook fill="#901C01" />, Link: "https://www.facebook.com/maristanorg/" },
+  { icon: <Twitter fill="#901C01" />, Link: "https://twitter.com/maristan_org" },
+  { icon: <Youtube fill="#901C01" />, Link: "https://www.youtube.com/channel/UCitimhmbu395HNhgW7YFWbg" },
 ];
 
 const ContactForm = ({data}) => {
@@ -123,7 +123,7 @@ const ContactForm = ({data}) => {
                 key={index}
                 className="w-[40px] h-[40px] flex items-center justify-center bg-[#ffff]  rounded-full cursor-pointer"
               >
-                <Link href={"/"}>{item.icon}</Link>
+                <Link href={item?.Link}>{item.icon}</Link>
               </div>
             ))}
           </div>
@@ -155,7 +155,7 @@ const ContactForm = ({data}) => {
                   onChange={(e) =>
                     setDis({ ...dis, firstname: e.target.value })
                   }
-                  placeholder="Input Name"
+                  placeholder="First Name"
                   className="ff-overpass border-[1px] border-[#E5E7EB] placeholder:text-[#6B7280] w-full placeholder:text-[14px] outline-none rounded-[4px] p-[8px] mt-[8px] mb-2"
                 />
               </div>
@@ -173,7 +173,7 @@ const ContactForm = ({data}) => {
                   id="lastname"
                   type="text"
                   tabIndex={0}
-                  placeholder="Input Name"
+                  placeholder="Last Name"
                   onChange={(e) => setDis({ ...dis, lastname: e.target.value })}
                   className="ff-overpass border-[1px] border-[#E5E7EB] placeholder:text-[#6B7280] w-full placeholder:text-[14px] outline-none rounded-[4px] p-[8px] mt-[8px] mb-2"
                 />

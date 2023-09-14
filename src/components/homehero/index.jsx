@@ -47,17 +47,17 @@ export const HomeHero = ({ data }) => {
                 </p>
               </div>
               <div className="mt-[31px] mb-[40px] flex sm:flex-row flex-col sm:gap-x-[10px] gap-y-[10px] sm:gap-y-0 ff-overpass">
-                <Link href={`${data?.cta && data?.cta[0]?.link}`}>
+                <a href={`${data?.cta && data?.cta[0]?.link}`}>
                   <button className="w-full sm:w-auto py-[16px] px-[24px] flex items-center justify-center sm:justify-start bg-[#901C01] text-[#FFFFFF] font-[600] text-[16px] leading-[20px] uppercase rounded-[8px] hover:bg-[#a1261b] duration-200 transition-all ff-overpass">
                     {data?.cta && data?.cta[0]?.name}
                   </button>
-                </Link>
-                <Link href={`tel:+${data?.cta[1]?.link}`}>
+                </a>
+                <a href={`tel:+${data?.cta[1]?.link}`}>
                   <button className="w-full sm:w-auto  flex items-center hover:bg-[#e5dad1] transition-all duration-300 justify-center sm:justify-start gap-x-[18px] py-[16px] border border-1 border-[#222222] border-opacity-[80%] px-[24px] text-[#222222] opacity-[80%] font-[600] text-[16px] leading-[20px] uppercase rounded-[8px]">
-                    <Dial className="color hover:fill-[#901C01] group-hover:text-[#ffffff]" />
+                    <Dial className="color  hover:fill-[#901C01]  group-hover:text-[#ffffff]" />
                     {data?.cta && data?.cta[1]?.name}
                   </button>
-                </Link>
+                </a>
               </div>
               <p className="max-w-[414px] ff-overpass text-[#2C2C2C] text-[16px] leading-[24px] font-[400]">
                 {data?.tagline}

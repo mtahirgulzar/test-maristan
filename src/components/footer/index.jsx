@@ -12,6 +12,7 @@ import Image from "next/image";
 import { imageResolver } from "@/utils/image-resolver";
 
 const Footer = ({ data }) => {
+  console.log(data?.FooterItems)
   const socialLinks = [
         { icon: <Instagram fill="#BCA692" />, Link: "/" },
         { icon: <Facebook fill="#BCA692" />, Link: "/" },
@@ -58,6 +59,7 @@ const Footer = ({ data }) => {
             <div className=" ">
               <div className="flex flex-wrap justify-between gap-x-[30px] ">
                 {data?.FooterItems?.map((item, idx) => {
+                  console.log(item?.items)
                   return (
                     <div key={idx}>
                       <h6 className="mb-[26px] text-[18px] ff-convergence leading-[21.11px] font-[400] text-[#2C2C2C]">
@@ -65,7 +67,8 @@ const Footer = ({ data }) => {
                       </h6>
                       <ul className="">
                         {item?.items?.map((item, idx) => (
-                          <Link key={idx} href={`${item.link}`}>
+                        
+                          <Link key={idx} href={`${item?.link}`}>
                             <li className="hover:text-[#111827] mb-[26px] ff-overpass duration-500 transition-all font-[400] text-[16px]  leading-[20.26px] text-[#4B4B4B] capitalize max-w-max cursor-pointer">
                               {item?.name}
                             </li>
