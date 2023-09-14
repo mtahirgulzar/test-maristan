@@ -1,9 +1,9 @@
-'use client'
+"use client";
 import { Location } from "@/common/icons/location.svg";
 import { imageResolver } from "@/utils/image-resolver";
+import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-
 
 export const JoinOurTeam = ({ data }) => {
   return (
@@ -24,7 +24,7 @@ export const JoinOurTeam = ({ data }) => {
           <div>
             <Image
               src={imageResolver(data?.img)?.path}
-              loader={()=> imageResolver(data?.img)?.path}
+              loader={() => imageResolver(data?.img)?.path}
               width={120}
               height={75}
               alt={data?.img?.data?.attributes?.alternativeText}
@@ -46,10 +46,14 @@ export const JoinOurTeam = ({ data }) => {
                   {item.description}
                 </p>
                 <div className="mt-[24px] border-[1px] border-[#901C01] rounded-[8px] transition-all duration-300 hover:bg-[#e8e8e8] inline-flex">
-                  <button className="px-[30px] py-[16px] text-[#901C01] leading-[20px] font-[600] ff-overpass uppercase">
-                    {data?.ctaName || "Apply now"}
-                  </button>
+                  <Link href="/contact-us">
+                    <button className="px-[30px] py-[16px] text-[#901C01] leading-[20px] font-[600] ff-overpass uppercase">
+                      {data?.ctaName || "Apply now"}
+                    </button>
+                  </Link>
                 </div>
+
+              
                 <div
                   className={`${
                     index == 1 && "hidden"
